@@ -10,12 +10,16 @@ namespace EntellectUniCupChallenge.CNN.Models
     {
         public int Rows { get; set; }
         public int Cols { get; set; }
+        public int ID { get; set; }
+        public List<Coordinate> PlacedCoordinates { get; set; } = new List<Coordinate>();
+
         public bool[,] OccupiedLocations { get; set; }
 
-        public DataLayer(int rows, int cols )
+        public DataLayer(int rows, int cols,int ID = -1 )
         {
             Rows = rows;
             Cols = cols;
+            this.ID = ID;
             OccupiedLocations = new bool[Rows, Cols];
         }
 
@@ -24,6 +28,11 @@ namespace EntellectUniCupChallenge.CNN.Models
             Rows = rows;
             Cols = cols;
             this.OccupiedLocations = IsOccupied;
+        }
+
+        public void AddPlacedCoordinate(int row, int col)
+        {
+            this.PlacedCoordinates.Add(new Coordinate(row, col));
         }
 
         public void SetOccupiedLocation(int row, int col,bool value)
@@ -55,6 +64,16 @@ namespace EntellectUniCupChallenge.CNN.Models
         public bool IsInRange(int row, int col)
         {
             return row >= 0 && row < this.Rows && col >= 0 && col < this.Cols;
+        }
+        public override string ToString()
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append($"{ID}");
+            foreach(var coord in this.PlacedCoordinates)
+            {
+                sb.Append($"|{coord.ToString()}");
+            }
+            return sb.ToString();
         }
     }
 }

@@ -2,6 +2,7 @@
 using EntellectUniCupChallenge.CNN.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -51,6 +52,14 @@ namespace EntellectUniCupChallenge
             ConvolutionHandler handler = new ConvolutionHandler(7, 7, inputGrid, filters);
             handler.ConvolveFilters();
             Console.WriteLine(handler.ToString());
+
+            // This will get the project directory
+            string workingDirectory = Environment.CurrentDirectory;
+            string outputDirecctory = Directory.GetParent(workingDirectory).Parent.FullName;
+            string filePath = new Uri(Path.Combine(outputDirecctory, "Output")).LocalPath;
+
+            handler.GenerateOutput(filePath, "Output.txt");
+   
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

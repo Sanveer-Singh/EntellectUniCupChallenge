@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Security.Permissions;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace EntellectUniCupChallenge
 {
@@ -18,7 +20,11 @@ namespace EntellectUniCupChallenge
             var rawJson = File.ReadAllText(Path.Combine(filePath, fileName));
             var response = JsonHelper.ToClass<Shapes>(rawJson);
 
-            Console.WriteLine(response.ToString());
+            ListofShapes shp = JsonConvert.DeserializeObject<ListofShapes>(File.ReadAllText(Path.Combine(filePath, fileName)));
+            Console.WriteLine(shp.ToString());
+           
+            
+
         }
     }
 }

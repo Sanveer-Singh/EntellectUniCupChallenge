@@ -3,6 +3,11 @@ using System.Collections.Generic;
 
 namespace EntellectUniCupChallenge
 {
+    public class ListofShapes
+    {
+        [JsonProperty("shapes")]
+        public List<Shapes> shapes { get; set; }
+    }
     public class Shapes
     {
 
@@ -24,7 +29,7 @@ namespace EntellectUniCupChallenge
         [JsonProperty("rotation")]
         public int rotation { get; set; }
         [JsonProperty("cells")]
-        public List<Coordinate> cells { get; set; }
+        public List<int[]> cells { get; set; }
 
     }
 

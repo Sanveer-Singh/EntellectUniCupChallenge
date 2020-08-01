@@ -33,9 +33,8 @@ namespace EntellectUniCupChallenge
 
     }
 
-    public class Coordinate
+    public class ShapeBooelan
     {
-        public int x { get; set; }
-        public int y { get; set; }
+        public int shapeId { get; set; }
     }
 }

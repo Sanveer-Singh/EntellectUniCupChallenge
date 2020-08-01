@@ -33,6 +33,13 @@ namespace EntellectUniCupChallenge.CNN.Models
                 this.OccupiedLocations[row, col] = value;
             }
         }
+        public void OROccupiedLocation(int row, int col, bool value)
+        {
+            if (IsInRange(row, col))
+            {
+                this.OccupiedLocations[row, col] |= value;
+            }
+        }
         public bool GetOccupiedLocation(int row, int col)
         {
             if (IsInRange(row, col))

@@ -259,8 +259,8 @@ namespace EntellectUniCupChallenge
         {// default response 
             string answer = "";
             answer += "File name : " + FileName + Environment.NewLine;
-            //answer += "Number of worms : " + Convert.ToString(worms) + Environment.NewLine;
-            //answer += "Number of crates : " + Convert.ToString(NumCrates) + Environment.NewLine;
+            answer += "Number of shapes : " + Convert.ToString(Shapes) + Environment.NewLine;
+            answer += "Number of blocked cells : " + Convert.ToString(BlockedCells) + Environment.NewLine;
             //answer += "Number of bases : " + Convert.ToString(NumBases) + Environment.NewLine;
             answer += "map height : " + Convert.ToString(MapHeight) + Environment.NewLine;
             answer += "Map width  :" + Convert.ToString(MapWidth) + Environment.NewLine;

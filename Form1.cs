@@ -32,14 +32,8 @@ namespace EntellectUniCupChallenge
                 // store string 
                 WorldFileName = open.FileName;
                 // make the world 
-                //WorldHandler myworld = new WorldHandler(open.FileName);
-                FileHandler Fh = new FileHandler();
-
-                string[] lines = Fh.GetlinesArray(WorldFileName);
-                foreach(string line in lines)
-                {
-                    rtxFileDisplay.Text += line + Environment.NewLine;
-                }
+                WorldBuilder myworld = new WorldBuilder(open.FileName);
+                rtxFileDisplay.Text = myworld.toString();
 
             }
         }

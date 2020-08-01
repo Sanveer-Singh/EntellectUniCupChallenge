@@ -35,6 +35,7 @@ namespace EntellectUniCupChallenge
                 WorldBuilder myworld = new WorldBuilder(open.FileName);
                 rtxFileDisplay.Text = myworld.toString();
 
+
             }
         }
     }

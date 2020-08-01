@@ -40,7 +40,16 @@ namespace EntellectUniCupChallenge
                 rtxFileDisplay.Text = myworld.toString();
 
                 List<DataLayer> filters = new List<DataLayer>();
-                var shapeIds = myworld.GetMapShapeList();
+                List<MapShape> SansShapes = myworld.GetMapShapeList();
+                List<MapShape> shapeIds = new List<MapShape>();
+                // initiialize the capacity 
+                foreach (MapShape s in SansShapes )
+                {
+                    s.GetCapacity();
+                    shapeIds.Add(s);
+                }
+                shapeIds = (from s in shapeIds orderby s.capacity descending select s).ToList();
+
                 RetriveShapes retrieve = new RetriveShapes();
                 foreach(var shape in shapeIds)
                 {

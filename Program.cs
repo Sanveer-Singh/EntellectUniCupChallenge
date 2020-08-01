@@ -30,15 +30,25 @@ namespace EntellectUniCupChallenge
                                            
                                         };
 
-            bool[,] filter = new bool[,] {
+            bool[,] tempFilter1 = new bool[,] {
                                             { false, true, false},
                                             { true, true, true},
                                             { false, true, false},
                                          };
+            bool[,] tempFilter2 = new bool[,] {
+                                            {  true, },
+                                            {  true, },
+                                            {  true, },
+                                         };
             DataLayer inputGrid = new DataLayer(7, 7, grid);
-            DataLayer inputFilter = new DataLayer(3, 3, filter);
+            DataLayer filter1 = new DataLayer(3, 3, tempFilter1);
+            DataLayer filter2 = new DataLayer(3, 1, tempFilter2);
 
-            ConvolutionHandler handler = new ConvolutionHandler(7, 7, inputGrid, inputFilter);
+            List<DataLayer> filters = new List<DataLayer>();
+            filters.Add(filter1);
+            filters.Add(filter2);
+
+            ConvolutionHandler handler = new ConvolutionHandler(7, 7, inputGrid, filters);
             handler.ConvolveFilters();
             Console.WriteLine(handler.ToString());
 

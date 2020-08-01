@@ -53,6 +53,25 @@ namespace EntellectUniCupChallenge.CNN
                 this.OutputGrid.SetOccupiedLocation(c.Row, c.Col, true);
             }
         }
+        public ConvolutionHandler(int GridRows, int GridCols, DataLayer inputGrid, List<DataLayer> filters)
+        {
+            //get the dimensions
+            this.GridRows = GridRows;
+            this.GridCols = GridCols;
+
+            this.OccupiedCoordinates = new List<Coordinate>();
+            this.Filters = filters;
+
+            this.InputGrid = inputGrid;
+            this.OutputGrid = inputGrid;
+
+            //set the coordinates that are occupied
+            foreach (var c in OccupiedCoordinates)
+            {
+                this.InputGrid.SetOccupiedLocation(c.Row, c.Col, true);
+                this.OutputGrid.SetOccupiedLocation(c.Row, c.Col, true);
+            }
+        }
 
         public override string ToString()
         {

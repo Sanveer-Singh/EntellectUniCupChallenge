@@ -11,7 +11,6 @@ namespace EntellectUniCupChallenge.CNN
     public class ConvolutionHandler
     {
         DataLayer InputGrid { get; set; }
-        DataLayer OutputGrid { get; set; }
         List<DataLayer> Filters { get; set; }
         public int GridRows { get; set; }
         public int GridCols { get; set; }
@@ -32,7 +31,6 @@ namespace EntellectUniCupChallenge.CNN
             foreach(var c in OccupiedCoordinates)
             {
                 this.InputGrid.SetOccupiedLocation(c.Row, c.Col, true);
-                this.OutputGrid.SetOccupiedLocation(c.Row, c.Col, true);
             }
         }
         public ConvolutionHandler(int GridRows, int GridCols, DataLayer inputGrid, DataLayer filter)
@@ -45,13 +43,11 @@ namespace EntellectUniCupChallenge.CNN
             this.Filters = new List<DataLayer>();
             this.Filters.Add(filter);
             this.InputGrid = inputGrid;
-            this.OutputGrid = inputGrid;
 
             //set the coordinates that are occupied
             foreach (var c in OccupiedCoordinates)
             {
                 this.InputGrid.SetOccupiedLocation(c.Row, c.Col, true);
-                this.OutputGrid.SetOccupiedLocation(c.Row, c.Col, true);
             }
         }
         public ConvolutionHandler(int GridRows, int GridCols, DataLayer inputGrid, List<DataLayer> filters)
@@ -64,13 +60,13 @@ namespace EntellectUniCupChallenge.CNN
             this.Filters = filters;
 
             this.InputGrid = inputGrid;
-            this.OutputGrid = inputGrid;
+
 
             //set the coordinates that are occupied
             foreach (var c in OccupiedCoordinates)
             {
                 this.InputGrid.SetOccupiedLocation(c.Row, c.Col, true);
-                this.OutputGrid.SetOccupiedLocation(c.Row, c.Col, true);
+
             }
         }
 

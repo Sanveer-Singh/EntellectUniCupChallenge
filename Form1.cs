@@ -1,4 +1,5 @@
-﻿using EntellectUniCupChallenge.CNN.Models;
+﻿using EntellectUniCupChallenge.CNN;
+using EntellectUniCupChallenge.CNN.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -37,6 +38,8 @@ namespace EntellectUniCupChallenge
               
                 List<Coordinate> coTest = myworld.GetBlockedCoords();
                 rtxFileDisplay.Text = myworld.toString();
+
+                ConvolutionHandler handler = new ConvolutionHandler((int)myworld.GetMapHeight(), (int)myworld.GetMapWidth(), myworld.GetBlockedCoords());
             }
         }
     }

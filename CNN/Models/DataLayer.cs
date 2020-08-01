@@ -23,11 +23,12 @@ namespace EntellectUniCupChallenge.CNN.Models
             OccupiedLocations = new bool[Rows, Cols];
         }
 
-        public DataLayer(int rows, int cols, bool[,] IsOccupied)
+        public DataLayer(int rows, int cols, bool[,] IsOccupied, int ID = -1)
         {
             Rows = rows;
             Cols = cols;
             this.OccupiedLocations = IsOccupied;
+            this.ID = ID;
         }
 
         public void AddPlacedCoordinate(int row, int col)
@@ -57,7 +58,7 @@ namespace EntellectUniCupChallenge.CNN.Models
             }
             else
             {
-                throw new Exception("Error in DataLayer: Out of Range");
+                return true;// throw new Exception("Error in DataLayer: Out of Range");
             }
         }
 

@@ -41,24 +41,24 @@ namespace EntellectUniCupChallenge
                                             {  true, },
                                             {  true, },
                                          };
-            DataLayer inputGrid = new DataLayer(7, 7, grid);
-            DataLayer filter1 = new DataLayer(3, 3, tempFilter1);
-            DataLayer filter2 = new DataLayer(3, 1, tempFilter2);
+            //DataLayer inputGrid = new DataLayer(7, 7, grid);
+            //DataLayer filter1 = new DataLayer(3, 3, tempFilter1);
+            //DataLayer filter2 = new DataLayer(3, 1, tempFilter2);
 
-            List<DataLayer> filters = new List<DataLayer>();
-            filters.Add(filter1);
-            filters.Add(filter2);
+            //List<DataLayer> filters = new List<DataLayer>();
+            //filters.Add(filter1);
+            //filters.Add(filter2);
 
-            ConvolutionHandler handler = new ConvolutionHandler(7, 7, inputGrid, filters);
-            handler.ConvolveFilters();
-            Console.WriteLine(handler.ToString());
+            //ConvolutionHandler handler = new ConvolutionHandler(7, 7, inputGrid, filters);
+            //handler.ConvolveFilters();
+            //Console.WriteLine(handler.ToString());
 
-            // This will get the project directory
-            string workingDirectory = Environment.CurrentDirectory;
-            string outputDirecctory = Directory.GetParent(workingDirectory).Parent.FullName;
-            string filePath = new Uri(Path.Combine(outputDirecctory, "Output")).LocalPath;
+            //// This will get the project directory
+            //string workingDirectory = Environment.CurrentDirectory;
+            //string outputDirecctory = Directory.GetParent(workingDirectory).Parent.FullName;
+            //string filePath = new Uri(Path.Combine(outputDirecctory, "Output")).LocalPath;
 
-            handler.GenerateOutput(filePath, "Output.txt");
+            //handler.GenerateOutput(filePath, "Output.txt");
    
 
             Application.EnableVisualStyles();

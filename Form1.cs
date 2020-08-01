@@ -39,8 +39,18 @@ namespace EntellectUniCupChallenge
                 List<Coordinate> coTest = myworld.GetBlockedCoords();
                 rtxFileDisplay.Text = myworld.toString();
 
-                ConvolutionHandler handler = new ConvolutionHandler((int)myworld.GetMapHeight(), (int)myworld.GetMapWidth(), myworld.GetBlockedCoords());
+                List<DataLayer> filters = new List<DataLayer>();
+                var shapeIds = myworld.GetMapShapeList();
+                RetriveShapes retrieve = new RetriveShapes();
+                foreach(var shape in shapeIds)
+                {
+                    filters.Add(retrieve.DataLayer((int)shape.ID));
+                }
+
+                ConvolutionHandler handler = new ConvolutionHandler(GridRows: (int)myworld.GetMapHeight(),GridCols: (int)myworld.GetMapWidth(), OccupiedCoordinates: myworld.GetBlockedCoords(),filters: filters);
+                handler.ConvolveFilters();
                 Console.WriteLine(handler.ToString());
+
             }
         }
     }

@@ -50,16 +50,16 @@ namespace EntellectUniCupChallenge.CNN
                 this.InputGrid.SetOccupiedLocation(c.Row, c.Col, true);
             }
         }
-        public ConvolutionHandler(int GridRows, int GridCols, DataLayer inputGrid, List<DataLayer> filters)
+        public ConvolutionHandler(int GridRows, int GridCols,List<Coordinate> OccupiedCoordinates, List<DataLayer> filters)
         {
             //get the dimensions
             this.GridRows = GridRows;
             this.GridCols = GridCols;
 
-            this.OccupiedCoordinates = new List<Coordinate>();
+            this.OccupiedCoordinates = OccupiedCoordinates;
             this.Filters = filters;
 
-            this.InputGrid = inputGrid;
+            this.InputGrid = new DataLayer(this.GridRows, this.GridCols);
 
 
             //set the coordinates that are occupied

@@ -1,10 +1,11 @@
-﻿using System;
+﻿using EntellectUniCupChallenge.CNN.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+ 
 namespace EntellectUniCupChallenge
 {
     class WorldBuilder
@@ -59,6 +60,25 @@ namespace EntellectUniCupChallenge
         
 
         }
+
+        /// <summary>
+        /// coordinates for jarred
+        /// </summary>
+        /// <returns></returns>
+        public List<Coordinate> GetBlockedCoords()
+        {
+            List<Coordinate> myCos = new List<Coordinate>();
+            foreach (MapPoints p in BlockedCellslist )
+            {
+                Coordinate returner = new Coordinate((int)p.x, (int)p.y);
+            }
+
+            return myCos;
+
+        }
+
+
+
         // make a function that reads all the map shapes  starts at line 3 
         public List<MapShape> GetMapShapeList()
         {

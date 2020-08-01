@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EntellectUniCupChallenge.CNN.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -33,9 +34,9 @@ namespace EntellectUniCupChallenge
                 WorldFileName = open.FileName;
                 // make the world 
                 WorldBuilder myworld = new WorldBuilder(open.FileName);
+              
+                List<Coordinate> coTest = myworld.GetBlockedCoords();
                 rtxFileDisplay.Text = myworld.toString();
-                myworld.
-
             }
         }
     }

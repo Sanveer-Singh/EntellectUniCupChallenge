@@ -71,6 +71,7 @@ namespace EntellectUniCupChallenge
             foreach (MapPoints p in BlockedCellslist )
             {
                 Coordinate returner = new Coordinate((int)p.x, (int)p.y);
+                myCos.Add(returner);
             }
 
             return myCos;

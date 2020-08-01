@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EntellectUniCupChallenge.CNN;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -34,7 +35,10 @@ namespace EntellectUniCupChallenge
                 // make the world 
                 WorldBuilder myworld = new WorldBuilder(open.FileName);
                 rtxFileDisplay.Text = myworld.toString();
-                myworld.
+
+                //create the the handler
+                ConvolutionHandler handler = new ConvolutionHandler((int)myworld.GetMapHeight(), (int)myworld.GetMapWidth(), myworld.GetBlockedCoords());
+
 
             }
         }

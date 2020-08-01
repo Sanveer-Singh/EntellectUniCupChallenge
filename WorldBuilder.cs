@@ -54,6 +54,8 @@ namespace EntellectUniCupChallenge
             BlockedCells = GetNumBlockedCells();
             // lets get a list of blocked cells
             BlockedCellslist = GetMapPoints();
+            // get ShapesList
+            WorldSHapes = GetMapShapeList();
         
 
         }
@@ -107,6 +109,38 @@ namespace EntellectUniCupChallenge
                 {
                     // returns -3 for a conversion error
                     answer = -3;
+                }
+
+            }
+            // returns -2 saying that a problem has occured
+            return answer;
+        }
+        public string getSubstringAtPosition(string line, char splitter, int position)
+        {
+            string answer = null;
+            // do safety checks
+            if ((line is null) || (line.Length == 0) || (splitter.ToString() is null))
+            {
+                // invalid call
+                return null;
+            }
+            else
+            {
+                // make a copy so the world doesnt get damaged
+                string TempLine = line;
+                // split by the splitter 
+                string[] words = TempLine.Split(splitter);
+                // try catch incase of conversion error
+                try
+                {
+                    // convert the related word to double after trimming white space
+                    answer = words[position].Trim();
+                    // answer is done
+                }
+                catch (Exception ex)
+                {
+                    // returns -3 for a conversion error
+                    answer = null;
                 }
 
             }
@@ -196,8 +230,20 @@ namespace EntellectUniCupChallenge
             }
             else
             {
-             for(int x =Shapes +3;x< FileLines.GetLength(0);x++)
+             for(int x =Shapes +3;x<FileLines.GetLength(0);x++)
              {
+                 // line x contains data for blocked cells 
+                 for(int y= 0; y<BlockedCells;y++)
+                 {
+                       string temp = "";
+
+                        temp = getSubstringAtPosition(FileLines[x], '|', y);
+                        double x1, y1 = 0;
+                        x1 = GetValueFromPosition(temp, ',', 0);
+                        y1 = GetValueFromPosition(temp, ',', 1);
+                        MapPoints p = new MapPoints(x1, y1);
+                        points.Add(p);
+                 }
 
              }
                 

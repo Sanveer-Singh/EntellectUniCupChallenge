@@ -12,17 +12,18 @@ namespace EntellectUniCupChallenge
         // publically accesible  variables that will make a world instance
         public string[] FileLines;
         public string FileName;
-        public List<MapPoints> MapPoints;
+        public List<MapPoints> BlockedCellslist;
         //read
         public double MapHeight;
         //read
         public double MapWidth;
         // unique shapes read ( use to read each shapes ID and Co-Ordinates
-        public double Shapes;
+        public int Shapes;
         // get the number of blocked cells
         public double BlockedCells;
         // shape list including ID and num available 
         List<MapShape> WorldSHapes = new List<MapShape>();
+        // get blocked cells ( line after all shapes ) line shapes +3 [size, num shapes, num cells]
 
 
 
@@ -32,7 +33,7 @@ namespace EntellectUniCupChallenge
         {
             // initialize everyithing just for good measure 
             FileName = FileName1;
-            MapPoints = new List<MapPoints>();
+            BlockedCellslist  = new List<MapPoints>();
             MapHeight = 0;
             MapWidth = 0;
             Shapes = 0;
@@ -43,23 +44,16 @@ namespace EntellectUniCupChallenge
             FileHandler myFilehandler = new FileHandler();
             // lets get the lines
             FileLines = myFilehandler.GetlinesArray(FileName);
-            // lets get num worms
-
-
+            // lets get num shapes
             Shapes = GetNumShapes();
-            // lets get crates 
-           
             //lets get width 
             MapWidth = GetMapWidth();
             // lets get map height 
             MapHeight = GetMapHeight();
             // lets get the number of blocked cells 
             BlockedCells = GetNumBlockedCells();
-            // lets get a list of shapes 
-                
-
-            // lets get map points :
-            MapPoints = GetMapPoints();
+            // lets get a list of blocked cells
+            BlockedCellslist = GetMapPoints();
         
 
         }
@@ -122,16 +116,16 @@ namespace EntellectUniCupChallenge
 
         /* get the number of unique shapes (position 1) line 2
          -1 is invalid file lines*/
-        public double GetNumShapes()
+        public int GetNumShapes()
         {
-            double answer = -1;
+            int answer = -1;
             if (FileLines is null)
             {
                 //return error output here
             }
             else
             {
-                answer = GetValueFromPosition(FileLines[1], ',', 0);
+                answer =(int) GetValueFromPosition(FileLines[1], ',', 0);
             }
 
 
@@ -202,7 +196,10 @@ namespace EntellectUniCupChallenge
             }
             else
             {
-             
+             for(int x =Shapes +3;x< FileLines.GetLength(0);x++)
+             {
+
+             }
                 
             }
             return points;

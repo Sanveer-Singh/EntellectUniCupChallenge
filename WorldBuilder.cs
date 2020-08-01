@@ -23,7 +23,7 @@ namespace EntellectUniCupChallenge
         // get the number of blocked cells
         public double BlockedCells;
         // shape list including ID and num available 
-        List<MapShape> WorldSHapes = new List<MapShape>();
+         public List<MapShape> WorldSHapes = new List<MapShape>();
         // get blocked cells ( line after all shapes ) line shapes +3 [size, num shapes, num cells]
 
 

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,11 +25,19 @@ namespace EntellectUniCupChallenge
         private void btnOpenInput_Click(object sender, EventArgs e)
         {
             // open file dialog   
+            // This will get the project directory
+            string workingDirectory = Environment.CurrentDirectory;
+            string projectRoot = Directory.GetParent(workingDirectory).Parent.FullName;
+            string outputPath = new Uri(Path.Combine(projectRoot, "Output")).LocalPath;
+            string openFilePath = new Uri(Path.Combine(projectRoot, "Data")).LocalPath;
+
             OpenFileDialog open = new OpenFileDialog
             {
                 // txt filters  
                 Filter = "Image Files(*.INPUT;)|*.INPUT;"
             };
+            open.InitialDirectory = openFilePath;
+
             if (open.ShowDialog() == DialogResult.OK)
             {
                 // store string 
@@ -49,8 +58,14 @@ namespace EntellectUniCupChallenge
 
                 ConvolutionHandler handler = new ConvolutionHandler(GridRows: (int)myworld.GetMapHeight(),GridCols: (int)myworld.GetMapWidth(), OccupiedCoordinates: myworld.GetBlockedCoords(),filters: filters);
                 handler.ConvolveFilters();
+
+
                 Console.WriteLine(handler.ToString());
 
+                var fileBits = open.FileName.Split(new char[] { '\\', '/' });
+                string newName = fileBits[fileBits.Length - 1];
+
+                handler.GenerateOutput(outputPath, $"{newName}_output.txt");
             }
         }
     }

@@ -40,6 +40,7 @@ namespace EntellectUniCupChallenge
                 rtxFileDisplay.Text = myworld.toString();
 
                 ConvolutionHandler handler = new ConvolutionHandler((int)myworld.GetMapHeight(), (int)myworld.GetMapWidth(), myworld.GetBlockedCoords());
+                Console.WriteLine(handler.ToString());
             }
         }
     }

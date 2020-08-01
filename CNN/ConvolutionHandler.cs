@@ -1,6 +1,7 @@
 ﻿using EntellectUniCupChallenge.CNN.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -94,11 +95,19 @@ namespace EntellectUniCupChallenge.CNN
                 sb.Append(Environment.NewLine);
             }
 
+            sb.Append(Environment.NewLine);
+            foreach(var filter in this.Filters)
+            {
+                sb.Append(filter.ToString());
+                sb.Append(Environment.NewLine);
+            }
             return sb.ToString();
         }
 
         public void ConvolveFilters()
         {
+
+
             bool blnNextFilter = false;
             foreach(var filter in Filters)
             {
@@ -168,9 +177,11 @@ namespace EntellectUniCupChallenge.CNN
                                 {
                                     //get the filter value
                                     bool blnOutputValue = filter.GetOccupiedLocation(filterRow, filterCol);
+                                    int placedRow = inputLayerRowOffset + filterRow;
+                                    int placedCol = inputLayerColOffset + filterCol;
                                     //get the grid value
-
-                                     this.InputGrid.OROccupiedLocation(inputLayerRowOffset + filterRow, inputLayerColOffset + filterCol,blnOutputValue);
+                                    filter.AddPlacedCoordinate(placedRow, placedCol);
+                                     this.InputGrid.OROccupiedLocation(placedRow, placedCol,blnOutputValue);
                                 }
                             }
 
@@ -194,6 +205,21 @@ namespace EntellectUniCupChallenge.CNN
             }
         }
 
+        public void GenerateOutput(string path, string fileName)
+        {
+            if (!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+            }
+            StringBuilder sb = new StringBuilder();
+            foreach (var filter in this.Filters)
+            {
+                sb.Append(filter.ToString());
+                sb.Append(Environment.NewLine);
+            }
+            string fullName = Path.Combine(path, fileName);
+            File.WriteAllText(fullName, sb.ToString());
+        }
 
     }
 }

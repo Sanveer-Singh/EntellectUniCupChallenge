@@ -16,5 +16,11 @@ namespace EntellectUniCupChallenge
         {
             InitializeComponent();
         }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            RetriveShapes retriveshape = new RetriveShapes();
+            retriveshape.GetData();
+        }
     }
 }
